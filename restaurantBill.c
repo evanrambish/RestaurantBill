@@ -12,18 +12,20 @@
 
 int main(int argc, char *argv[]) {
 
+    double taxPercent, tipPercent;
     // Check that tax and tip percentages were passed
 
-    if(argc < 3){
-        printf("Usage: restaurantBill <tax_percent> <tip_percent>\n");
-        printf("Example: restaurantBill 8 15\n");
-        return 1;
+    if(argc >= 3) {
+        taxPercent = atof(argv[1]);
+        tipPercent = atof(argv[2]);
+    } else {
+        // Read from stdin (for piping with echo)
+        if(scanf("%lf %lf", &taxPercent, &tipPercent) != 2) {
+            printf("Usage: restaurantBill <tax_percent> <tip_percent>\n");
+            printf("Example: restaurantBill 8 15\n");
+            return 1;
+        }
     }
-
-    // Read tax and tip percentages
-
-    double taxPercent = atof(argv[1]);
-    double tipPercent = atof(argv[2]);
 
     // Define meal options and prices
 
@@ -42,6 +44,7 @@ int main(int argc, char *argv[]) {
 
     printf("Randomly selected meal: %s - $%.2f\n", meals[mealIndex], mealCost);
     printf("Tax Amount: $%.2f\n", taxAmount);
+    fprintf(stderr, "Tip: $%.2f\n", tipAmount); // STDERR
     printf("Total Bill: $%.2f\n", totalBill);
 
     return 0;
