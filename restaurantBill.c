@@ -25,11 +25,6 @@ int main(int argc, char *argv[]) {
     double taxPercent = atof(argv[1]);
     double tipPercent = atof(argv[2]);
 
-    // Test that tax and tip percentages are valid
-
-    printf("Tax Percent Entered: %.2f%%\n", taxPercent);
-    printf("Tip Percent Entered: %.2f%%\n", tipPercent);
-
     // Define meal options and prices
 
     const char *meals[] = {"Salad", "Soup", "Sandwich", "Pizza"};
@@ -41,7 +36,13 @@ int main(int argc, char *argv[]) {
     int mealIndex = rand() % 4;
     double mealCost = prices[mealIndex];
 
+    double taxAmount = mealCost * (taxPercent / 100);
+    double tipAmount = mealCost * (tipPercent / 100);
+    double totalBill = mealCost + taxAmount + tipAmount;
+
     printf("Randomly selected meal: %s - $%.2f\n", meals[mealIndex], mealCost);
+    printf("Tax Amount: $%.2f\n", taxAmount);
+    printf("Total Bill: $%.2f\n", totalBill);
 
     return 0;
 }
