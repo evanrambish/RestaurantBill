@@ -12,6 +12,24 @@
 
 int main(int argc, char *argv[]) {
 
+    // Check that tax and tip percentages were passed
+
+    if(argc < 3){
+        printf("Usage: restaurantBill <tax_percent> <tip_percent>\n");
+        printf("Example: restaurantBill 8 15\n");
+        return 1;
+    }
+
+    // Read tax and tip percentages
+
+    double taxPercent = atof(argv[1]);
+    double tipPercent = atof(argv[2]);
+
+    // Test that tax and tip percentages are valid
+
+    printf("Tax Percent Entered: %.2f%%\n", taxPercent);
+    printf("Tip Percent Entered: %.2f%%\n", tipPercent);
+
     // Define meal options and prices
 
     const char *meals[] = {"Salad", "Soup", "Sandwich", "Pizza"};
